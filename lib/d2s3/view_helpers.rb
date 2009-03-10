@@ -7,20 +7,20 @@ module D2S3
     def s3_http_upload_tag(options = {})
       bucket          = D2S3::S3Config.bucket
       access_key_id   = D2S3::S3Config.access_key_id
-      key             = options[:key]
-      content_type    = options[:content_type]
-      redirect        = options[:redirect]
-      acl             = options[:acl]
+      key             = options[:key] || ''
+      content_type    = options[:content_type] || '' # Defaults to binary/octet-stream if blank
+      redirect        = options[:redirect] || '/'
+      acl             = options[:acl] || 'public-read'
       expiration_date = 1.hours.from_now.strftime('%Y-%m-%dT%H:%M:%S.000Z')
 
       policy = Base64.encode64(
-        "{'expiration': '2009-10-01T00:00:00Z',
+        "{'expiration': '#{expiration_date}',
           'conditions': [
             {'bucket': '#{bucket}'},
             ['starts-with', '$key', '#{key}'],
             {'acl': '#{acl}'},
             {'success_action_redirect': '#{redirect}'},
-            ['starts-with', '', ''],
+            ['starts-with', '#{content_type}', ''],
             ['content-length-range', 0, 1048576]
           ]
         }").gsub(/\n|\r/, '')
