@@ -1,4 +1,4 @@
-module S3SwfUpload
+module D2S3
   module Signature
     $hexcase = false  # hex output format. false - lowercase; true - uppercase
     $b64pad  = "=" # base-64 pad character. "=" for strict RFC compliance
