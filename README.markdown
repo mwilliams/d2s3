@@ -6,9 +6,9 @@ d2s3 (direct to s3) is a simple helper that generates an upload form that will t
 ### Example:
 
 		<%= s3_http_upload_tag 	:key => 'uploads', 
-														:content_type => 'image/jpeg', 
-														:redirect => image_processing_url,
-														:acl => 'public-read' %>
+								:content_type => 'image/jpeg', 
+								:redirect => image_processing_url,
+								:acl => 'public-read' %>
 
 Most of the options are optional.
 

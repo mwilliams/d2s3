@@ -1,0 +1,4 @@
+* Add HTML options for styling
+* Add ability to make the form POST an AJAX call instead
+* Add progress indicator
+* Write tests
