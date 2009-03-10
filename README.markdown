@@ -10,7 +10,21 @@ d2s3 (direct to s3) is a simple helper that generates an upload form that will t
 								:redirect => image_processing_url,
 								:acl => 'public-read' %>
 
-Most of the options are optional.
+The above helper will generate the following similar HTML form, generating all of the appropriate field keys, policy, and signature based on your Amazon Web Services YAML configuration file.
+
+		<form action="https://YOUR_S3_BUCKET.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+		  <input type="hidden" name="key" value="uploads/${filename}">
+		  <input type="hidden" name="AWSAccessKeyId" value="YOUR_AWS_ACCESS_KEY"> 
+		  <input type="hidden" name="acl" value="private"> 
+		  <input type="hidden" name="success_action_redirect" value="/image_processing_url">
+		  <input type="hidden" name="policy" value="YOUR_POLICY_DOCUMENT_BASE64_ENCODED">
+		  <input type="hidden" name="signature" value="YOUR_CALCULATED_SIGNATURE">
+		  <input type="hidden" name="Content-Type" value="image/jpeg">
+		  File to upload to S3: 
+		  <input name="file" type="file"> 
+		  <br> 
+		  <input type="submit" value="Upload File to S3"> 
+		</form>
 
 _**Matthew Williams, 2009**_
 
