@@ -12,6 +12,7 @@ module D2S3
       redirect        = options[:redirect] || '/'
       acl             = options[:acl] || 'public-read'
       expiration_date = 1.hours.from_now.strftime('%Y-%m-%dT%H:%M:%S.000Z')
+      max_filesize    = options[:max_filesize] || 1.megabyte
 
       policy = Base64.encode64(
         "{'expiration': '#{expiration_date}',

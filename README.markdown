@@ -8,7 +8,8 @@ d2s3 (direct to s3) is a simple helper that generates an upload form that will t
 		<%= s3_http_upload_tag 	:key => 'uploads', 
 								:content_type => 'image/jpeg', 
 								:redirect => image_processing_url,
-								:acl => 'public-read' %>
+								:acl => 'public-read' 
+								:max_filesize => 5.megabytes %>
 
 The above helper will generate the following similar HTML form, generating all of the appropriate field keys, policy, and signature based on your Amazon Web Services YAML configuration file.
 
