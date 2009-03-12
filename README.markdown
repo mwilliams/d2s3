@@ -25,6 +25,14 @@ The above helper will generate the following similar HTML form, generating all o
 		  <br> 
 		  <input type="submit" value="Upload File to S3"> 
 		</form>
+		
+
+### **TODO**
+* Add theme support
+	* Example, passing :theme => :multiple as an option to provide a "Add File" button to instantiate another instance of the uploader, or :count => 3 to provide 3 file upload instances.
+	* Templating.  Designing a template that the form would be based on and could be called with :template => :file\_upload.
+* Add progress indicator
+* Write tests 
 
 _**Matthew Williams, 2009**_
 
