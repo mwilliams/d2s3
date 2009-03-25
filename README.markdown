@@ -63,4 +63,4 @@ The above helper will generate the following similar HTML form, generating all o
 
 _**Matthew Williams, 2009**_
 
-Thanks to the s3-swf-upload plugin which code was borrowed from to make this project work.  That project can be found at: http://github.com/elcgit/s3-swf-upload-plugin/tree/master
+Thanks to the [s3-swf-upload](http://github.com/elcgit/s3-swf-upload-plugin/tree/master "s3-swf-upload GitHub Project Page") plugin which code was borrowed from to make this project happen.
