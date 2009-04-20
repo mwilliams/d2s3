@@ -59,7 +59,7 @@ The above helper will generate the following similar HTML form, generating all o
     
 
 ### **TODO**
-* Write tests 
+* Write tests (shame on me, I know...  they're coming)
 
 _**Matthew Williams, 2009**_
 
