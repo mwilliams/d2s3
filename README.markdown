@@ -16,7 +16,7 @@ We don't have immediate processing of our images with this workflow, but it's ve
 		<%= s3_http_upload_tag 	:key => 'uploads', 
 								:content_type => 'image/jpeg', 
 								:redirect => image_processing_url,
-								:acl => 'public-read' 
+								:acl => 'public-read',
 								:max_filesize => 5.megabytes,
 								:submit_button => '<input type="submit" value="Upload" class="button" id="upload-button">',
 								:form => {:style => 'display: inline;'} %>
