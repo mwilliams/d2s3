@@ -11,7 +11,7 @@ module D2S3
       content_type    = options[:content_type] || '' # Defaults to binary/octet-stream if blank
       redirect        = options[:redirect] || '/'
       acl             = options[:acl] || 'public-read'
-      expiration_date = options[:expiration_date].from_now.strftime('%Y-%m-%dT%H:%M:%S.000Z') || 10.hours.from_now.strftime('%Y-%m-%dT%H:%M:%S.000Z')
+      expiration_date = (options[:expiration_date] || 10.hours).from_now.strftime('%Y-%m-%dT%H:%M:%S.000Z')
       max_filesize    = options[:max_filesize] || 1.megabyte
       submit_button   = options[:submit_button] || '<input type="submit" value="Upload">'
       
