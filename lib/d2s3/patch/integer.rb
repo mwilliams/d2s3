@@ -1,5 +1,5 @@
 class Integer
-  # 32-bit left shift 
+  # 32-bit left shift
   def js_shl(count)
     v = (self << count) & 0xffffffff
     v > 2**31 ? v - 2**32 : v
