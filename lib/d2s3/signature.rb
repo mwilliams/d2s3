@@ -2,7 +2,7 @@ module D2S3
   module Signature
     $hexcase = false  # hex output format. false - lowercase; true - uppercase
     $b64pad  = "=" # base-64 pad character. "=" for strict RFC compliance
-    $chrsz   = 8  # bits per input character. 8 - ASCII; 16 - Unicode    
+    $chrsz   = 8  # bits per input character. 8 - ASCII; 16 - Unicode
 
     def hex_sha1(s)
       return binb2hex(core_sha1(str2binb(s), s.length * $chrsz))
@@ -59,9 +59,9 @@ module D2S3
         #for(var j = 0; j < 80; j++)
         j = 0
         while(j < 80)
-          if(j < 16) 
+          if(j < 16)
             w[j] = x[i + j] || 0
-          else 
+          else
             w[j] = rol(w[j-3] ^ w[j-8] ^ w[j-14] ^ w[j-16], 1)
           end
 
@@ -88,7 +88,7 @@ module D2S3
     # Perform the appropriate triplet combination function for the current
     # iteration
     def sha1_ft(t, b, c, d)
-      return (b & c) | ((~b) & d) if(t < 20) 
+      return (b & c) | ((~b) & d) if(t < 20)
       return b ^ c ^ d if(t < 40)
       return (b & c) | (b & d) | (c & d) if(t < 60)
       return b ^ c ^ d;
@@ -103,7 +103,7 @@ module D2S3
     # Calculate the HMAC-SHA1 of a key and some data
     def core_hmac_sha1(key, data)
       bkey = str2binb(key)
-      if(bkey.length > 16) 
+      if(bkey.length > 16)
         bkey = core_sha1(bkey, key.length * $chrsz)
       end
 
@@ -158,7 +158,7 @@ module D2S3
     #     str += String.fromCharCode((bin[i>>5] >>> (32 - $chrsz - i%32)) & mask);
     #   return str;
     # }
-    # 
+    #
 
     # Convert an array of big-endian words to a hex string.
     def binb2hex(binarray)
