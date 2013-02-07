@@ -65,10 +65,11 @@ The above helper will generate the following similar HTML form, generating all o
 
 
 ### **TODO**
-* Write tests (shame on me, I know...  they're coming)
 * Test in Rails 2
 * Add travis
 
-_**Matthew Williams, 2013**_
+### **Contributors**
+* _**Matthew Williams**_
+* _**Gabriel Cebrian**_
 
 Thanks to the [s3-swf-upload](http://github.com/elcgit/s3-swf-upload-plugin/tree/master "s3-swf-upload GitHub Project Page") plugin which code was borrowed from to make this project happen.
