@@ -1,8 +1,12 @@
-# **d2s3**
-d2s3 (direct to s3) is a simple Ruby on Rails helper that generates an upload form that will take a given file and upload it directly to your S3 bucket, bypassing your server.  This has various benefits, the biggest being that a large upload will not tie up your server from serving other requests.  This plugin is based on the instructions from the following Amazon tutorial: [http://developer.amazonwebservices.com/connect/entry.jspa?externalID=1434](http://developer.amazonwebservices.com/connect/entry.jspa?externalID=1434/ "Browser Uploads to S3 using HTML POST Forms")
+# **d2s3 (Direct to S3)**
+The d2s3 (direct to s3) gem adds is a simple Ruby on Rails helper that generates an upload form that will take a given file and upload it directly to your S3 bucket, bypassing your server.  This has various benefits, the biggest being that a large upload will not tie up your server from serving other requests.  This gem is based on the instructions from the following Amazon tutorial: [http://developer.amazonwebservices.com/connect/entry.jspa?externalID=1434](http://developer.amazonwebservices.com/connect/entry.jspa?externalID=1434/ "Browser Uploads to S3 using HTML POST Forms")
 
 ### Why?
 This was built as a solution to a problem we had where images being uploaded to be processed by [Paperclip](http://thoughtbot.com/projects/paperclip "Thoughtbot - Paperclip") were consuming [Thin](http://code.macournoyer.com/thin/ "Thin - Another Web Server") servers so they were unable to process other requests.
+
+#### Install:
+
+	gem install d2s3
 
 #### An example workflow using d2s3
  1. Upload file with the `s3_http_upload_tag` helper form tag
@@ -21,7 +25,7 @@ We don't have immediate processing of our images with this workflow, but it's ve
 								:submit_button => '<input type="submit" value="Upload" class="button" id="upload-button">',
 								:form => {:style => 'display: inline;'} %>
 
-The above helper will generate the following similar HTML form, generating all of the appropriate field keys, policy, and signature based on your Amazon Web Services YAML configuration file.  The form parameter also accepts a class and id for further customization.
+The above helper will generate the following similar HTML form, generating all of the appropriate field keys, policy, and signature based on your Amazon Web Services YAML configuration file. The form parameter also accepts a class and id for further customization.
 
 		<form action="https://YOUR_S3_BUCKET.s3.amazonaws.com/" method="post" enctype="multipart/form-data" style="display: inline;">
 		  <input type="hidden" name="key" value="uploads/${filename}">
@@ -46,6 +50,8 @@ The above helper will generate the following similar HTML form, generating all o
   * Accepts a standard content type, otherwise it will default to binary/octet-stream
 * **:redirect**
   * Directs the form where the GET request from Amazon should be made once the HTTP POST is successful
+* **:success\_action\_status**
+  * The status code returned to the client upon successful upload if success_action_redirect is not specified. Accepts 200, 201 and 204. Defaults to 204
 * **:acl**
   * Accepts either 'public-read' or 'private'.  If blank, it defaults to 'public-read'
 * **:expiration_date**
@@ -60,7 +66,9 @@ The above helper will generate the following similar HTML form, generating all o
 
 ### **TODO**
 * Write tests (shame on me, I know...  they're coming)
+* Test in Rails 2
+* Add travis
 
-_**Matthew Williams, 2009**_
+_**Matthew Williams, 2013**_
 
 Thanks to the [s3-swf-upload](http://github.com/elcgit/s3-swf-upload-plugin/tree/master "s3-swf-upload GitHub Project Page") plugin which code was borrowed from to make this project happen.
