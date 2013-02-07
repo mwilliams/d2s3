@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.homepage      = "https://github.com/mwilliams/d2s3"
   gem.license       = ""
 
-  gem.files         = ["README.markdown", "Rakefile", "init.rb", "lib/d2s3.rb", "lib/d2s3/s3_config.rb", "lib/d2s3/view_helpers.rb", "tasks/d2s3_tasks.rake", "test/d2s3_test.rb", "test/test_helper.rb"]
+  gem.files         = `git ls-files`.split("\n")
   gem.test_files    = `git ls-files -- {spec}/*`.split("\n")
   gem.name          = "d2s3"
   gem.require_paths = ["lib"]
