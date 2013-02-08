@@ -5,7 +5,7 @@ module D2S3
 
       cattr_reader :access_key_id, :secret_access_key, :bucket
 
-      initializer :load_s3_config, :after => :load_environment_config, :group => :all do
+      initializer :load_s3_config do |app|
         require File.join(Rails.root, "config", "environment.rb")
       end
 
