@@ -17,27 +17,28 @@ This was built as a solution to a problem we had where images being uploaded to 
 We don't have immediate processing of our images with this workflow, but it's very quick assuming how large the queue is and how many back end processes we have actually running through the queue.
 
 ### Example d2s3 usage
-		<%= s3_http_upload_tag 	:key => 'uploads',
-								:content_type => 'image/jpeg',
-								:redirect => image_processing_url,
-								:acl => 'public-read',
-								:max_filesize => 5.megabytes,
-								:submit_button => '<input type="submit" value="Upload" class="button" id="upload-button">',
-								:form => {:style => 'display: inline;'} %>
-
+```ruby
+<%= s3_http_upload_tag 	:key => 'uploads',
+			:content_type => 'image/jpeg',
+			:redirect => image_processing_url,
+			:acl => 'public-read',
+			:max_filesize => 5.megabytes,
+			:submit_button => '<input type="submit" value="Upload" class="button" id="upload-button">',
+			:form => {:style => 'display: inline;'} %>
+```
 The above helper will generate the following similar HTML form, generating all of the appropriate field keys, policy, and signature based on your Amazon Web Services YAML configuration file. The form parameter also accepts a class and id for further customization.
-
-		<form action="https://YOUR_S3_BUCKET.s3.amazonaws.com/" method="post" enctype="multipart/form-data" style="display: inline;">
-		  <input type="hidden" name="key" value="uploads/${filename}">
-		  <input type="hidden" name="AWSAccessKeyId" value="YOUR_AWS_ACCESS_KEY">
-		  <input type="hidden" name="acl" value="public-read">
-		  <input type="hidden" name="success_action_redirect" value="/image_processing_url">
-		  <input type="hidden" name="policy" value="YOUR_POLICY_DOCUMENT_BASE64_ENCODED">
-		  <input type="hidden" name="signature" value="YOUR_CALCULATED_SIGNATURE">
-		  <input type="hidden" name="Content-Type" value="image/jpeg">
-		  <input name="file" type="file"><input type="submit" value="Upload" class="button" id="upload-button">
-		</form>
-
+```html
+<form action="https://YOUR_S3_BUCKET.s3.amazonaws.com/" method="post" enctype="multipart/form-data" style="display: inline;">
+  <input type="hidden" name="key" value="uploads/${filename}">
+  <input type="hidden" name="AWSAccessKeyId" value="YOUR_AWS_ACCESS_KEY">
+  <input type="hidden" name="acl" value="public-read">
+  <input type="hidden" name="success_action_redirect" value="/image_processing_url">
+  <input type="hidden" name="policy" value="YOUR_POLICY_DOCUMENT_BASE64_ENCODED">
+  <input type="hidden" name="signature" value="YOUR_CALCULATED_SIGNATURE">
+  <input type="hidden" name="Content-Type" value="image/jpeg">
+  <input name="file" type="file"><input type="submit" value="Upload" class="button" id="upload-button">
+</form>
+```
 ### Return HTTP GET request from Amazon made to the redirect you declared
     Parameters: {"bucket"=>"BUCKET_NAME",
                  "etag"=>"ETAG_HASH",
@@ -63,13 +64,9 @@ The above helper will generate the following similar HTML form, generating all o
 * **:form => {:id => '', :class => '', :style => ''}**
   * Accepts a hash of :class, :id, and :style to add customization to the form as a whole
 
-
-### **TODO**
-* Test in Rails 2
-* Add travis
-
 ### **Contributors**
 * _**Matthew Williams**_
 * _**Gabriel Cebrian**_
+* _**Patrick Jones**_
 
 Thanks to the [s3-swf-upload](http://github.com/elcgit/s3-swf-upload-plugin/tree/master "s3-swf-upload GitHub Project Page") plugin which code was borrowed from to make this project happen.
